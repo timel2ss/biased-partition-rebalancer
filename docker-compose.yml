@@ -17,6 +17,7 @@ services:
     hostname: kafka1
     ports:
       - "9091:9091"
+      - "9997:9997"
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
@@ -24,6 +25,8 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LISTENER_DOCKER_INTERNAL:PLAINTEXT,LISTENER_DOCKER_EXTERNAL:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_DOCKER_INTERNAL
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      JMX_PORT: 9997
+      KAFKA_JMX_OPTS: -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=127.0.0.1 -Dcom.sun.management.jmxremote.rmi.port=9997
     volumes:
       - ~/data/kafka1/data:/tmp/kafka-logs
     depends_on:
@@ -34,6 +37,7 @@ services:
     hostname: kafka2
     ports:
       - "9092:9092"
+      - "9998:9998"
     environment:
       KAFKA_BROKER_ID: 2
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
@@ -41,6 +45,8 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LISTENER_DOCKER_INTERNAL:PLAINTEXT,LISTENER_DOCKER_EXTERNAL:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_DOCKER_INTERNAL
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      JMX_PORT: 9998
+      KAFKA_JMX_OPTS: -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=127.0.0.1 -Dcom.sun.management.jmxremote.rmi.port=9998
     volumes:
       - ~/data/kafka2/data:/tmp/kafka-logs
     depends_on:
@@ -51,6 +57,7 @@ services:
     hostname: kafka3
     ports:
       - "9093:9093"
+      - "9999:9999"
     environment:
       KAFKA_BROKER_ID: 3
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
@@ -58,6 +65,8 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LISTENER_DOCKER_INTERNAL:PLAINTEXT,LISTENER_DOCKER_EXTERNAL:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_DOCKER_INTERNAL
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      JMX_PORT: 9999
+      KAFKA_JMX_OPTS: -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=127.0.0.1 -Dcom.sun.management.jmxremote.rmi.port=9999
     volumes:
       - ~/data/kafka3/data:/tmp/kafka-logs
     depends_on:
